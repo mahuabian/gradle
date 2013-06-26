@@ -1,0 +1,90 @@
+apply plugin: 'maven-publish'
+
+basePom = {
+  project {
+    name project.displayName
+    description project.description
+    url "https://github.com/bairimen/ttpod"
+
+    licenses {
+      license {
+        name "The Apache Software License, Version 2.0"
+        url "http://www.apache.org/licenses/LICENSE-2.0.txt"
+        distribution "repo"
+      }
+    }
+
+    scm {
+      connection "scm:git:git://github.com/spockframework/spock.git"
+      developerConnection "scm:git:ssh://git@github.com:bairimen/ttpod.git"
+      url "https://github.com/bairimen/ttpod"
+    }
+
+    developers {
+      developer {
+        id "cyy2cyy"
+        name "CYY"
+        email "cyy2cyy@gmail.com"
+      }
+    }
+  }
+}
+
+project.deployers = []
+
+project.afterEvaluate {
+  configure(project.deployers) {
+    pom basePom
+  }
+}
+
+install {
+  project.deployers << repositories.mavenInstaller
+}
+
+uploadArchives { task ->
+  project.deployers << repositories.mavenDeployer {
+    if (isSnapshotVersion) {
+      snapshotRepository(url: "file://D:/Maven")
+    } else {
+      repository(url: "https://oss.sonatype.org/service/local/staging/deploy/maven2/") {
+        if (project.hasProperty("sonatypeOssUsername")) {
+          authentication(userName: sonatypeOssUsername, password: sonatypeOssPassword)
+        }
+      }
+    }
+  }
+}
+
+project.poms = project.deployers*.pom
+
+modifyPom = { Closure modification ->
+  project.poms.each { 
+    it.whenConfigured(modification) 
+  }
+}
+
+def optionalDeps = []
+optional = { optionalDeps << it; it }
+
+def providedDeps = []
+provided = { providedDeps << it; it }
+
+def internalDeps = []
+internal = { internalDeps << it; it }
+
+modifyPom { pom ->
+  optionalDeps.each { dep ->
+    pom.dependencies.find { it.artifactId == dep.name }.optional = true
+  }
+  providedDeps.each { dep ->
+    pom.dependencies.find { it.artifactId == dep.name }.scope = "provided"
+  }
+  internalDeps.each { dep ->
+    pom.dependencies.removeAll { it.artifactId == dep.name }
+  }
+  // no need to publish test dependencies
+  pom.dependencies.removeAll { it.scope == "test" }
+}
+
+deployers*.beforeDeployment { signing.signPom(it) }
