@@ -1,0 +1,15 @@
+buildscript {
+    repositories {
+        maven { url 'http://repo.springsource.org/plugins-release' }
+    }
+    dependencies {
+        classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.1'
+    }
+}
+
+//apply plugin: 'propdeps'
+//apply plugin: 'propdeps-maven'
+//apply plugin: 'propdeps-idea'
+
+apply plugin: org.springframework.build.gradle.propdep.PropDepsPlugin.class
+apply plugin: org.springframework.build.gradle.propdep.PropDepsMavenPlugin.class
