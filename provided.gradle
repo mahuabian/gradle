@@ -1,5 +1,6 @@
 buildscript {
     repositories {
+        maven { url 'http://mvn.ttpod.com/nexus/content/groups/public/'}
         maven { url 'http://repo.springsource.org/plugins-release' }
     }
     dependencies {
