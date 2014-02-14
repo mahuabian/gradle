@@ -1,5 +1,6 @@
 
-if(project.file("src/main/resources/logback.xml").exists()){
+if(project.file("src/main/resources/logback.xml").exists()
+|| project.file("src/test/resources/logback.xml").exists()){
 
     configurations {
         compile.exclude module: 'commons-logging'
