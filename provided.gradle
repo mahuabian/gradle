@@ -1,16 +1,51 @@
+//buildscript {
+//    repositories {
+//        maven { url 'http://mvn.ttpod.com/nexus/content/groups/public/'}
+//        maven { url 'http://repo.springsource.org/plugins-release' }
+//    }
+//    dependencies {
+//        classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.1'
+//    }
+//}
+//
+////apply plugin: 'propdeps'
+////apply plugin: 'propdeps-maven'
+////apply plugin: 'propdeps-idea'
+//
+//apply plugin: org.springframework.build.gradle.propdep.PropDepsPlugin.class
+//apply plugin: org.springframework.build.gradle.propdep.PropDepsMavenPlugin.class
+
+
+//============================================================================
+
+
+
 buildscript {
     repositories {
-        maven { url 'http://mvn.ttpod.com/nexus/content/groups/public/'}
-        maven { url 'http://repo.springsource.org/plugins-release' }
+        maven { url 'http://repo.spring.io/plugins-release' }
     }
     dependencies {
-        classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.1'
+        classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.6'
     }
 }
 
 //apply plugin: 'propdeps'
 //apply plugin: 'propdeps-maven'
-//apply plugin: 'propdeps-idea'
-
 apply plugin: org.springframework.build.gradle.propdep.PropDepsPlugin.class
 apply plugin: org.springframework.build.gradle.propdep.PropDepsMavenPlugin.class
+
+//============================================================================
+//configurations {
+//    provided
+//    optional
+//    //all*.exclude module: 'groovy-all',version:'2.2.1'
+//}
+//
+////https://github.com/uehaj/groovy-comprehension/blob/master/build.gradle
+//tasks.withType(JavaCompile) {
+//    classpath += configurations.provided
+//    classpath += configurations.optional
+//}
+//tasks.withType(GroovyCompile) {
+//    groovyClasspath += configurations.provided
+//}
