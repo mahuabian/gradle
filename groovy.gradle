@@ -11,8 +11,8 @@ if(project.file("src/main/groovy").exists()){
 
 
     compileGroovy {
-        sourceCompatibility = '1.7'
-        targetCompatibility = '1.7'
+        sourceCompatibility = '1.6'
+        targetCompatibility = '1.6'
         groovyOptions.listFiles = false
         groovyOptions.optimizationOptions.indy = true
 //        groovyOptions.fork = false
