@@ -6,11 +6,13 @@ if(project.file("src/main/groovy").exists()){
     apply plugin: 'groovy'
 
     dependencies {
-        compile 'org.codehaus.groovy:groovy-all:2.3.3:indy'
+        compile 'org.codehaus.groovy:groovy-all:2.3.6:indy'
     }
 
 
     compileGroovy {
+        sourceCompatibility = '1.7'
+        targetCompatibility = '1.7'
         groovyOptions.listFiles = false
         groovyOptions.optimizationOptions.indy = true
 //        groovyOptions.fork = false
