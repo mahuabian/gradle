@@ -6,7 +6,7 @@ if(project.file("src/main/groovy").exists()){
     apply plugin: 'groovy'
 
     dependencies {
-        compile 'org.codehaus.groovy:groovy-all:2.3.6:indy'
+        compile 'org.codehaus.groovy:groovy-all:2.3.11:indy'
     }
 
 
