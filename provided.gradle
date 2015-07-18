@@ -1,24 +1,3 @@
-//buildscript {
-//    repositories {
-//        maven { url 'http://mvn.ttpod.com/nexus/content/groups/public/'}
-//        maven { url 'http://repo.springsource.org/plugins-release' }
-//    }
-//    dependencies {
-//        classpath 'org.springframework.build.gradle:propdeps-plugin:0.0.1'
-//    }
-//}
-//
-////apply plugin: 'propdeps'
-////apply plugin: 'propdeps-maven'
-////apply plugin: 'propdeps-idea'
-//
-//apply plugin: org.springframework.build.gradle.propdep.PropDepsPlugin.class
-//apply plugin: org.springframework.build.gradle.propdep.PropDepsMavenPlugin.class
-
-
-//============================================================================
-
-
 
 buildscript {
     repositories {
@@ -35,17 +14,14 @@ apply plugin: org.springframework.build.gradle.propdep.PropDepsPlugin.class
 apply plugin: org.springframework.build.gradle.propdep.PropDepsMavenPlugin.class
 
 //============================================================================
-//configurations {
-//    provided
-//    optional
-//    //all*.exclude module: 'groovy-all',version:'2.2.1'
-//}
+
+//buildscript {
+//    repositories { jcenter() }
 //
-////https://github.com/uehaj/groovy-comprehension/blob/master/build.gradle
-//tasks.withType(JavaCompile) {
-//    classpath += configurations.provided
-//    classpath += configurations.optional
+//    dependencies {
+//        classpath 'com.netflix.nebula:gradle-extra-configurations-plugin:2.2.+'
+//    }
 //}
-//tasks.withType(GroovyCompile) {
-//    groovyClasspath += configurations.provided
-//}
+////apply plugin: 'provided-base'
+//apply plugin: nebula.plugin.extraconfigurations.ProvidedBasePlugin.class
+//apply plugin: nebula.plugin.extraconfigurations.OptionalBasePlugin.class
