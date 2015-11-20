@@ -11,4 +11,16 @@ if(project.file("src/main/webapp").exists()){
 
     println ":${project.name}: [ webapp ] detect."
 
+    [jettyRun,jettyRunWar]*.doFirst {
+        httpPort = 8080
+        contextPath = ""
+        // Must not have our own groovy
+//        on the class path since it's already loaded by gradle
+        // and if it isn't exactly the same version, then we get
+        // "GroovyRuntimeException: Conflicting module versions"
+//        final FileCollection currentClasspath = classpath
+//        final FileCollection classpathWithoutGroovy = classpath.filter {!it.name.contains('groovy-all')}
+        classpath = classpath.filter {!it.name.contains('groovy-all')}
+    }
 }
+
