@@ -1,0 +1,10 @@
+apply plugin: 'maven'
+
+repositories {
+    mavenLocal()
+    maven {
+        url "http://mvnrepo.alibaba-inc.com/nexus/content/groups/public"
+    }
+    jcenter()
+    mavenCentral()
+}
